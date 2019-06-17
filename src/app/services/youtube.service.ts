@@ -8,15 +8,19 @@ export class YoutubeService {
 
   youtubeUrl =  'https://www.googleapis.com/youtube/v3';
   apiKey = 'YOUR YOUTUBE API KEY';
+  
 
   constructor(private httpClient: HttpClient) { }
 
   getVideos(){
     const url = `${this.youtubeUrl}/playlistItems`;
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    });
-    return this.httpClient.get(url, { headers })
+
+    const params = new HttpParams().set('part', 'snippet')
+    .set('maxResults', '10')
+    .set('playlistId', 'UU8butISFwT-Wl7EV0hUK0BQ')
+    .set('key', this.apiKey );
+
+    return this.httpClient.get(url, { params })
       .pipe( map((data: any) => console.log(data)));
   }
 
