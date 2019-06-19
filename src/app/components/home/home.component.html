@@ -1,6 +1,6 @@
 <div class="container main-container">
 
-    <h1>My Youtube videos</h1>
+    <h1>Code videos <small>from freeCodeCamp</small> </h1>
     <hr>
     <div class="card-columns" *ngIf="videos.length>0">
         <div *ngFor="let video of videos" class="card animated fadeIn fast">
@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{video.title}}</h5>
                 <p class="card-text" style="overflow: hidden; position: relative; white-space: nowrap; text-overflow: ellipsis;">{{video.description}}</p>
-                <button (click)="watchVideo(video)" type="button" class="btn btn-outline-danger btn-block"> watch video</button>
+                <button (click)="watchVideo(video)" type="button" class="btn btn-success btn-block"> watch video</button>
             </div>
 
             <div class="card-footer">
@@ -17,13 +17,13 @@
         </div>
     </div>
 
-    <button (click)="loadMore()" type="button" class="btn btn-outline-primary btn-block"> Load more videos</button>
+    <button (click)="loadMore()" type="button" class="btn btn-primary btn-block mt-4"> Load more videos</button>
 
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content" *ngIf="videoSelected">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">{{videoSelected.title}}</h5>
@@ -32,7 +32,7 @@
                 </button> -->
             </div>
             <div class="modal-body">
-                <iframe width="100%" height="300" [src]="videoSelected.resourceId.videoId | secureDom" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="400" [src]="videoSelected.resourceId.videoId | secureDom" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="modal-footer">
                 <button (click)="closeModal()" type="button" class="btn btn-secondary">Close</button>
