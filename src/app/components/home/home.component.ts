@@ -15,27 +15,28 @@ export class HomeComponent implements OnInit {
   videoSelected: any;
 
   constructor(private youtubeService: YoutubeService) {
-    this.youtubeService.getVideos()
-      .subscribe(videos => {
-        this.videos = videos;
-        // console.log(this.videos);
-      }
+        this.youtubeService.getVideos()
+      .subscribe(videos => this.videos = videos);
 
-      );
   }
 
   ngOnInit() {
   }
 
-  watchVideo(video: any){
+  loadMore() {
+    this.youtubeService.getVideos()
+      .subscribe(videos => this.videos.push.apply(this.videos, videos));
+  }
+
+  watchVideo(video: any) {
     this.videoSelected = video;
-    console.log(this.videoSelected);
     $('#exampleModalCenter').modal();
   }
-  
-  closeModal(){
+
+  closeModal() {
     this.videoSelected = null;
     $('#exampleModalCenter').modal('hide');
   }
+
 
 }

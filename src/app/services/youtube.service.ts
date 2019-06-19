@@ -11,6 +11,7 @@ export class YoutubeService {
 
   apiKey = 'YOUR YOUTUBE API KEY';
 
+
   constructor(private httpClient: HttpClient) { }
 
   getVideos() {
@@ -19,11 +20,18 @@ export class YoutubeService {
     const params = new HttpParams().set('part', 'snippet')
       .set('maxResults', '10')
       .set('playlistId', 'UU8butISFwT-Wl7EV0hUK0BQ')
-      .set('key', this.apiKey);
+      .set('key', this.apiKey)
+      .set('pageToken', this.nextPageToken);
+      
+
+    // if (this.nextPageToken !== '') {
+    //   params.set('pageToken', this.nextPageToken);
+    // }
+
 
     return this.httpClient.get(url, { params })
       .pipe(map((data: any) => {
-
+        console.log(data);
         this.nextPageToken = data.nextPageToken;
 
         // We will build a videos array with the snippets
@@ -32,7 +40,7 @@ export class YoutubeService {
           const snippet = video.snippet;
           videos.push(snippet);
         }
-
+        // console.log(videos);
         return videos;
       }));
 
