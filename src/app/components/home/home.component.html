@@ -4,11 +4,13 @@
     <hr>
     <div class="card-columns" *ngIf="videos.length>0">
         <div *ngFor="let video of videos" class="card animated fadeIn fast">
-            <img class="card-img-top" [src]="video.thumbnails.high.url" alt="Card image cap">
+            <img class="card-img-top" [src]="video.thumbnails.high.url" [alt]="video.title">
             <div class="card-body">
                 <h5 class="card-title">{{video.title}}</h5>
                 <p class="card-text" style="overflow: hidden; position: relative; white-space: nowrap; text-overflow: ellipsis;">{{video.description}}</p>
+                <button (click)="watchVideo(video)" type="button" class="btn btn-outline-danger btn-block"> watch video</button>
             </div>
+
             <div class="card-footer">
                 <small class="text-muted">{{video.publishedAt | date}}</small>
             </div>
