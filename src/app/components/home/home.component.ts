@@ -32,4 +32,10 @@ export class HomeComponent implements OnInit {
     console.log(this.videoSelected);
     $('#exampleModalCenter').modal();
   }
+  
+  closeModal(){
+    this.videoSelected = null;
+    $('#exampleModalCenter').modal('hide');
+  }
+
 }
